@@ -37,8 +37,8 @@ namespace TestMetamask
         }
 
         [AllowAnonymous]
-        [HttpGet]
-        public async Task<IActionResult> RequestConnection(string account)
+        [HttpGet("RequestConnection")]
+        public IActionResult RequestConnection(string account)
         {
             var connectVm = RequestEntry(account);
 
@@ -77,7 +77,7 @@ namespace TestMetamask
              {
                  entry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(3);
                  var test = new ConnectionVM();
-                 return new ConnectionVM { Account = account, DateTime = DateTime.Now, Nonce = new Guid() };
+                 return new ConnectionVM { Account = account, DateTime = DateTime.Now, Nonce = Guid.NewGuid() };
              });
         }
 
